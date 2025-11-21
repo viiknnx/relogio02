@@ -1,5 +1,5 @@
 :root {
-    --cor-fundo: #FFFFFF; 
+    --cor-fundo: transparent; 
     --cor-texto-principal: #000000;
     --cor-ampm: rgba(0, 0, 0, 0.7);
 }
