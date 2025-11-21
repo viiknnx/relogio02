@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relógio 02</title>
+
+    <style>
+        /* 1. CARREGAMENTO DA FONTE */
+        @font-face {
+            font-family: "deltarune";
+            src: url("deltarune.ttf") format("truetype");
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* 2. DEFINIÇÃO DE VARIÁVEIS CSS (Padrão: Modo Claro) */
+        :root {
+            /* Cores padrão para Modo Claro */
+            --cor-fundo: #FFFFFF; /* Branco */
+            --cor-texto-principal: #000000; /* Preto */
+            --cor-ampm: rgba(0, 0, 0, 0.7); /* Preto transparente */
+        }
+
+        /* 3. MEDIA QUERY PARA MODO ESCURO */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                /* Sobrescreve as variáveis para o Modo Escuro */
+                --cor-fundo: #1a1a1a; /* Cinza Escuro */
+                --cor-texto-principal: #F0F0F0; /* Quase Branco */
+                --cor-ampm: rgba(240, 240, 240, 0.7); /* Quase Branco transparente */
+            }
+        }
+        
+        /* O restante do CSS utiliza as variáveis */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: "deltarune", sans-serif;
+            overflow: hidden;
+            
+            /* Aplica as variáveis de cor e fundo */
+            color: var(--cor-texto-principal);
+            background-color: var(--cor-fundo); 
+            
+            /* Garante que o body ocupe a tela toda */
+            min-height: 100vh;
+            margin: 0;
+
+            /* Estilos originais */
+            -webkit-touch-callout: none; 
+            -webkit-user-select: none; 
+            -moz-user-select: none; 
+            -ms-user-select: none; 
+            user-select: none;
+        }
+
+        .clock-container {
+            position: absolute;
+            display: flex;
+            top: 0%;
+        }
+
+        .clock {
+            font-size: 4em;
+            font-weight: 800;
+            text-align: center;
+            margin-left: 5px;
+        }
+
+        .ampm {
+            position: relative;
+            /* Usa a nova variável de cor para o AM/PM */
+            color: var(--cor-ampm); 
+            opacity: 1; /* Opacidade agora está na cor, pode ser 1 aqui */
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 1px;
+            top: 3.1rem;
+        }
+
+        /* Removido: .blink e animação */
+    </style>
+</head>
+<body>
+    <div class="clock-container">
+        <div class="ampm" id="ampm"></div>
+        <div class="clock" id="time"></div>
+    </div>
+
+    <script>
+        function updateClock() {
+            var now = new Date();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var ampm = hours >= 12 ? 'PM' : 'AM';
+
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+
+            var timeString = hours + ':' + minutes;
+
+            document.getElementById('time').innerHTML = timeString;
+            document.getElementById('ampm').innerHTML = ampm;
+
+            setTimeout(updateClock, 1000);
+        }
+
+        updateClock();
+    </script>
+</body>
+</html>
