@@ -1,0 +1,16 @@
+:root {
+    --cor-fundo: #FFFFFF; 
+    --cor-texto-principal: #000000;
+    --cor-ampm: rgba(0, 0, 0, 0.7);
+}
+
+body {
+    /* ... */
+    color: var(--cor-texto-principal);
+    background-color: var(--cor-fundo); 
+    /* ... */
+}
+.ampm {
+    color: var(--cor-ampm); 
+    /* ... */
+}
